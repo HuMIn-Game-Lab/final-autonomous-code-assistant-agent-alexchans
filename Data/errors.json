@@ -1,0 +1,96 @@
+{
+    "./Code/errorCode/TestCodes.cpp": [
+        {
+            "Code Snippet": [
+                [
+                    "void TestCodes::setVal(int value)"
+                ],
+                [
+                    "{"
+                ],
+                [
+                    "    val = value"
+                ],
+                [
+                    "}"
+                ],
+                [
+                    ""
+                ]
+            ],
+            "Column": [
+                "16"
+            ],
+            "Error": [
+                "expected ';' after expression"
+            ],
+            "File": [
+                "./Code/errorCode/TestCodes.cpp"
+            ],
+            "Row": [
+                "5"
+            ]
+        }
+    ],
+    "./Code/errorCode/automated.cpp": [
+        {
+            "Code Snippet": [
+                [
+                    "int main()"
+                ],
+                [
+                    "{"
+                ],
+                [
+                    "    std::cout << \"This is the automated file\" << endl;"
+                ],
+                [
+                    "    retrn 0;"
+                ],
+                [
+                    "}"
+                ]
+            ],
+            "Column": [
+                "50"
+            ],
+            "Error": [
+                "use of undeclared identifier 'endl'; did you mean 'std::endl'?"
+            ],
+            "File": [
+                "./Code/errorCode/automated.cpp"
+            ],
+            "Row": [
+                "6"
+            ]
+        },
+        {
+            "Code Snippet": [
+                [
+                    "{"
+                ],
+                [
+                    "    std::cout << \"This is the automated file\" << endl;"
+                ],
+                [
+                    "    retrn 0;"
+                ],
+                [
+                    "}"
+                ]
+            ],
+            "Column": [
+                "5"
+            ],
+            "Error": [
+                "use of undeclared identifier 'retrn'"
+            ],
+            "File": [
+                "./Code/errorCode/automated.cpp"
+            ],
+            "Row": [
+                "7"
+            ]
+        }
+    ]
+}

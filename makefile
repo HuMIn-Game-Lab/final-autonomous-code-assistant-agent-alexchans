@@ -1,2 +1,13 @@
-compile: 
-	clang++ -g -std=c++14 ./Code/*.cpp -o output
+compile:
+	clang++ -o app ./Code/*.cpp -L./Code/lib -ljob
+
+libLinux:
+	clear
+	clang++ -shared -o ./Code/lib/libjob.so -fPIC ./Code/lib/*.cpp
+
+buildLinux:
+	clear
+	clang++ -o app ./Code/*.cpp -L./Code/lib -ljob -Wl,-rpath=./Code/lib
+run:
+	clear
+	./app
