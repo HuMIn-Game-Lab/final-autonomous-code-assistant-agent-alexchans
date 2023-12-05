@@ -1,4 +1,5 @@
 #include "CustomLLMJob.h"
+#include <set>
 
 CustomLLMJob::CustomLLMJob(json input)
 {
@@ -42,7 +43,73 @@ void CustomLLMJob::Execute()
 
 void CustomLLMJob::JobCompleteCallback()
 {
-    // Write the output to a txt file
+    // Write the output to a json file
     std::ofstream o("Data/correctedCode.json");
     o << output << std::endl;
+    // parse the response to a vector
+    std::ifstream file("Data/correctedCode.json");
+    std::vector<std::string> fileContent;
+    std::string aLine;
+    while (std::getline(file, aLine))
+    {
+        if (aLine.find(':') != std::string::npos)
+            fileContent.push_back(aLine);
+    }
+    std::map<std::string, std::map<int, std::set<std::string>>> dMap;
+    std::map<int, std::set<std::string>> innerMap;
+    std::string filePath;
+    for (int i = 0; i < fileContent.size(); i++)
+    {
+        if (i > 0 && fileContent[i - 1].find("./Code") != std::string::npos)
+        {
+            filePath = fileContent[i - 1];
+            filePath = filePath.substr(filePath.find("./Code"), filePath.find(":") - 8);
+            std::string correctContents = fileContent[i];
+            size_t lastNonSpace = correctContents.find_last_not_of(" \t\n\r\f\v");
+            correctContents.erase(lastNonSpace + 1);
+            char num = correctContents[correctContents.find("\"") + 1];
+            if (correctContents[correctContents.length() - 1] == ',')
+            {
+                correctContents = correctContents.substr(correctContents.find(":") + 3, correctContents.length() - (correctContents.find(":") + 5));
+            }
+            else
+            {
+                correctContents = correctContents.substr(correctContents.find(":") + 3, correctContents.length() - (correctContents.find(":") + 4));
+            }
+            int row = num - '0';
+            innerMap[row].insert(correctContents);
+            dMap[filePath] = innerMap;
+        }
+        else if (i > 0 && fileContent[i - 1].find(",") != std::string::npos && fileContent[i].find("./Code") == std::string::npos)
+        {
+            std::string correctContents = fileContent[i];
+            size_t lastNonSpace = correctContents.find_last_not_of(" \t\n\r\f\v");
+            correctContents.erase(lastNonSpace + 1);
+            char num = correctContents[correctContents.find("\"") + 1];
+            if (correctContents[correctContents.length() - 1] == ',')
+            {
+                correctContents = correctContents.substr(correctContents.find(":") + 3, correctContents.length() - (correctContents.find(":") + 5));
+            }
+            else
+            {
+                correctContents = correctContents.substr(correctContents.find(":") + 3, correctContents.length() - (correctContents.find(":") + 4));
+            }
+            int row = num - '0';
+            innerMap[row].insert(correctContents);
+            dMap[filePath] = innerMap;
+        }
+    }
+    for (auto pair : dMap)
+    {
+        std::cout << pair.first << ": " << std::endl;
+        for (auto i : pair.second)
+        {
+            std::cout << i.first << ": ";
+            for (auto z : i.second)
+            {
+                std::cout << z << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
 }

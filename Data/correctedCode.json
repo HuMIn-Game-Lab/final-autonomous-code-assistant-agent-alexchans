@@ -1,21 +1,20 @@
-
 {
   "correctedCodes": {
       "./Code/errorCode/TestCodes.cpp": {
-          "5": "    val = value;"
+          "5": "val = value;"
       },
       "./Code/errorCode/automated.cpp": {
-          "6": "    std::cout << \"This is the automated file\" << std::endl;",
-          "7": "    return 0;"
+          "6": "std::cout << \"This is the automated file\" << std::endl;",
+          "7": "return 0;"
       }
   },
   "comments": {
       "./Code/errorCode/TestCodes.cpp": {
-          "5": "Added semicolon to end of line",
+          "5": "Added semicolon to end of line."
       },
       "./Code/errorCode/automated.cpp": {
-          "6": "Added std:: before endl",
-          "7": "Corrected spelling of return keyword"
+          "6": "Fixed use of endl by adding std:: before it.",
+          "7": "Fixed typo in return keyword."
       }
   }
 }
