@@ -1,0 +1,22 @@
+
+{
+  "correctedCodes": {
+      "./Code/errorCode/TestCodes.cpp": {
+          "rownumber": "corrected line of code"
+      },
+      "./Code/errorCode/automated.cpp": {
+          "rownumber": "corrected line of code",
+          "rownumber": "corrected line of code"
+      }
+  },
+  "comments": {
+      "./Code/errorCode/TestCodes.cpp": {
+          "rownumber": "comment"
+      },
+      "./Code/errorCode/automated.cpp": {
+          "rownumber": "comment",
+          "rownumber": "comment"
+      }
+  }
+}
+

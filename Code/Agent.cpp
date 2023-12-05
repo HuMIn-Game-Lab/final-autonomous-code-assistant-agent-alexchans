@@ -68,7 +68,7 @@ void Agent::Run()
     input["jobChannel"] = 0xF0000000;
     input["folder"] = "Data/errors.json";
     jobFolders.push_back("Data/errors.json");
-    input["prompt"] = "Given a JSON file presenting errors in C++ files, where each error is accompanied by a Code Snippet providing the error line in the middle and 2 lines above/below it, correct the error lines. Provide only the corrected lines in separated lines, and include comments explaining how each error is fixed. The response should not be in JSON format.";
+    input["prompt"] = "Given a JSON file called errors.json representing errors in C++ code, where each error is accompanied by a Code Snippet providing the error line along with 2 lines above/below it, correct the error lines. Provide a JSON file with two objects: correctedCodes and comments. correctedCodes should have one corrected line as an index, and comments should include a comment for each corrected line, explaining how it was fixed. I will show you errors.json first, then the json format that I would like you to return.";
     input["jobType"] = 2;
     input["IPAddress"] = "127.0.0.1";
     js->registerNewJobType(input, CustomLLMJob::CreateCustomJob);

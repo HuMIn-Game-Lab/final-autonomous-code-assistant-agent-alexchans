@@ -18,7 +18,8 @@ let newPrompt = prompt;
 if (errorJsonFile) {
     // Read the file content if provided
     const fileContent = readFileSync(errorJsonFile, 'utf8');
-    newPrompt += "\n" + fileContent;
+    const exFile = readFileSync('Data/example.json', 'utf8');
+    newPrompt += "\n" + fileContent + exFile;
 }
 
 // Call the OpenAI API with the extracted values
