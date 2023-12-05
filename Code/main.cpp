@@ -1,7 +1,4 @@
-#include "CustomLLMJob.h"
-#include "lib/JobSystem.h"
 #include "Agent.h"
-using json = nlohmann::json;
 
 int main()
 {

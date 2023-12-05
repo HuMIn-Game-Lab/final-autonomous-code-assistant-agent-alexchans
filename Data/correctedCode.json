@@ -1,16 +1,12 @@
 
-Corrected lines for the first error in TestCodes.cpp:
-
-void TestCodes::setVal(int value) //Added ';' at the end of the line to fix the "expected ';' after expression" error
+void TestCodes::setVal(int value); //semicolon added after function definition
 {
-    val = value; //Added ';' at the end of the line to fix the "expected ';' after expression" error
+    val = value; //semicolon added after assignment statement
 }
-
-Corrected lines for the first error in automated.cpp:
 
 int main()
 {
-    std::cout << "This is the automated file" << std::endl; //Added "std::" before "endl" to fix the "use of undeclared identifier 'endl'; did you mean 'std::endl'?" error
-    return 0; //Fixed the misspelling of "return" to fix the "use of undeclared identifier 'retrn'" error
+    std::cout << "This is the automated file" << std::endl; //added std:: before endl
+    return 0; //fixed typo "retrn"
 }
 

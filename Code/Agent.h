@@ -1,5 +1,7 @@
 #include "lib/JobSystem.h"
 #include "Interpreter.h"
+#include "CustomJob.h"
+#include "CustomLLMJob.h"
 
 class Agent
 {
