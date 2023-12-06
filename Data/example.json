@@ -2,20 +2,20 @@
 {
   "correctedCodes": {
       "./Code/errorCode/TestCodes.cpp": {
-          "rownumber": "corrected line of code"
+          "RowNumber": "corrected line of code"
       },
       "./Code/errorCode/automated.cpp": {
-          "rownumber": "corrected line of code",
-          "rownumber": "corrected line of code"
+          "RowNumber": "corrected line of code",
+          "RowNumber": "corrected line of code"
       }
   },
   "comments": {
       "./Code/errorCode/TestCodes.cpp": {
-          "rownumber": "comment"
+          "RowNumber": "comment for the corrected line at same row in same file"
       },
       "./Code/errorCode/automated.cpp": {
-          "rownumber": "comment",
-          "rownumber": "comment"
+          "RowNumber": "comment for the corrected line at same row in same file",
+          "RowNumber": "comment for the corrected line at same row in same file"
       }
   }
 }

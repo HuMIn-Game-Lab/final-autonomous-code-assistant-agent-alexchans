@@ -9,7 +9,7 @@
                     "{"
                 ],
                 [
-                    "    val = value"
+                    "val = value; //Added semicolon at the end of the expression."
                 ],
                 [
                     "}"
@@ -42,10 +42,10 @@
                     "{"
                 ],
                 [
-                    "    std::cout << \"This is the automated file\" << endl;"
+                    "std::cout << \"This is the automated file\" << std::endl; //Fixed use of undeclared identifier 'endl' by adding 'std::' in front."
                 ],
                 [
-                    "    retrn 0;"
+                    "return 0; //Fixed typo in 'return' keyword."
                 ],
                 [
                     "}"
@@ -70,10 +70,10 @@
                     "{"
                 ],
                 [
-                    "    std::cout << \"This is the automated file\" << endl;"
+                    "std::cout << \"This is the automated file\" << std::endl; //Fixed use of undeclared identifier 'endl' by adding 'std::' in front."
                 ],
                 [
-                    "    retrn 0;"
+                    "return 0; //Fixed typo in 'return' keyword."
                 ],
                 [
                     "}"

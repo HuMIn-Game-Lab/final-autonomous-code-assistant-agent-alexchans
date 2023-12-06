@@ -1,5 +1,4 @@
 #include "CustomLLMJob.h"
-#include <set>
 
 CustomLLMJob::CustomLLMJob(json input)
 {
@@ -46,7 +45,7 @@ void CustomLLMJob::JobCompleteCallback()
     // Write the output to a json file
     std::ofstream o("Data/correctedCode.json");
     o << output << std::endl;
-    // parse the response to a vector
+    // go through and json file with the correctedCodes/comments, get the necessary contents and save to a map called dMap
     std::ifstream file("Data/correctedCode.json");
     std::vector<std::string> fileContent;
     std::string aLine;
@@ -55,8 +54,7 @@ void CustomLLMJob::JobCompleteCallback()
         if (aLine.find(':') != std::string::npos)
             fileContent.push_back(aLine);
     }
-    std::map<std::string, std::map<int, std::set<std::string>>> dMap;
-    std::map<int, std::set<std::string>> innerMap;
+    std::map<std::string, std::map<int, std::vector<std::string>>> dMap;
     std::string filePath;
     for (int i = 0; i < fileContent.size(); i++)
     {
@@ -77,8 +75,7 @@ void CustomLLMJob::JobCompleteCallback()
                 correctContents = correctContents.substr(correctContents.find(":") + 3, correctContents.length() - (correctContents.find(":") + 4));
             }
             int row = num - '0';
-            innerMap[row].insert(correctContents);
-            dMap[filePath] = innerMap;
+            dMap[filePath][row].push_back(correctContents);
         }
         else if (i > 0 && fileContent[i - 1].find(",") != std::string::npos && fileContent[i].find("./Code") == std::string::npos)
         {
@@ -95,21 +92,36 @@ void CustomLLMJob::JobCompleteCallback()
                 correctContents = correctContents.substr(correctContents.find(":") + 3, correctContents.length() - (correctContents.find(":") + 4));
             }
             int row = num - '0';
-            innerMap[row].insert(correctContents);
-            dMap[filePath] = innerMap;
+            dMap[filePath][row].push_back(correctContents);
         }
     }
     for (auto pair : dMap)
     {
-        std::cout << pair.first << ": " << std::endl;
+        std::ifstream errorFile(pair.first);
+        std::vector<std::string> errorFileContent;
+        std::string errorLine;
+        while (std::getline(errorFile, errorLine))
+        {
+            errorFileContent.push_back(errorLine);
+        }
         for (auto i : pair.second)
         {
-            std::cout << i.first << ": ";
-            for (auto z : i.second)
+            for (int j = 0; j < errorFileContent.size(); j++)
             {
-                std::cout << z << " ";
+                if (j + 1 == i.first)
+                {
+                    std::string codeWithComments = i.second[0] + " //" + i.second[1];
+                    codeWithComments.erase(std::remove(codeWithComments.begin(), codeWithComments.end(), '\\'), codeWithComments.end());
+                    errorFileContent[j] = codeWithComments;
+                }
             }
-            std::cout << std::endl;
         }
+        errorFile.close();
+        std::ofstream fixedFile(pair.first, std::ofstream::trunc);
+        for (int i = 0; i < errorFileContent.size(); i++)
+        {
+            fixedFile << errorFileContent[i] << std::endl;
+        }
+        fixedFile.close();
     }
 }
