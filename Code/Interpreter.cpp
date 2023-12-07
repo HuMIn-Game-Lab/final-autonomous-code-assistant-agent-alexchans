@@ -173,6 +173,7 @@ void Interpreter::Run()
     if (dependencyMap.empty())
         return;
     int jobID = 0;
+    int finishJobID = 0;
     // first create/execute jobs with no dependencies
     for (auto job : jobs)
     {
@@ -182,6 +183,8 @@ void Interpreter::Run()
             input["folder"] = jobFolders[jobID++];
             js->CreateNewJob(input);
             std::this_thread::sleep_for(std::chrono::seconds(3)); // make the main thread wait for the job is processed
+            input["jobID"] = finishJobID++;
+            js->FinishJob(input);
             //  erase the dependencies
             for (auto &pair : dependencyMap)
             {
@@ -200,7 +203,9 @@ void Interpreter::Run()
                 input["newJobType"] = it->first;
                 input["folder"] = jobFolders[jobID++];
                 js->CreateNewJob(input);
-
+                std::this_thread::sleep_for(std::chrono::seconds(5));
+                input["jobID"] = finishJobID++;
+                js->FinishJob(input);
                 // Erase the job from value, then key
                 for (auto &pair : dependencyMap)
                 {
@@ -213,8 +218,5 @@ void Interpreter::Run()
                 ++it;
             }
         }
-        std::this_thread::sleep_for(std::chrono::seconds(5));
     }
-    // finish jobs being executed
-    js->FinishCompletedJobs();
 }

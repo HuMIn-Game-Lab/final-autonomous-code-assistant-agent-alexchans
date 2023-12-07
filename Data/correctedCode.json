@@ -1,5 +1,3 @@
-Example:
-
 {
   "correctedCodes": {
       "./Code/errorCode/TestCodes.cpp": {
@@ -12,11 +10,11 @@ Example:
   },
   "comments": {
       "./Code/errorCode/TestCodes.cpp": {
-          "5": "Added semicolon at the end of the expression."
+          "5": "Added semicolon at the end of the line to fix the error"
       },
       "./Code/errorCode/automated.cpp": {
-          "6": "Fixed use of undeclared identifier 'endl' by adding 'std::' in front.",
-          "7": "Fixed typo in 'return' keyword."
+          "6": "Fixed the use of undeclared identifier by adding 'std::'",
+          "7": "Fixed the spelling of 'return' keyword to fix the error"
       }
   }
 }
