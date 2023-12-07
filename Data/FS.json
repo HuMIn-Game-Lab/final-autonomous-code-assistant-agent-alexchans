@@ -1,7 +1,7 @@
 
 
 digraph G {
-  compileJob1 -> llmJob;
-  llmJob -> compileJob2;
+    compileJob1 -> llmJob;
+    llmJob -> compileJob2;
 }
 

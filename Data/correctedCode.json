@@ -10,11 +10,11 @@
   },
   "comments": {
       "./Code/errorCode/TestCodes.cpp": {
-          "5": "Added semicolon at the end of the line to fix the error"
+          "5": "Added semicolon at the end of the line."
       },
       "./Code/errorCode/automated.cpp": {
-          "6": "Fixed the use of undeclared identifier by adding 'std::'",
-          "7": "Fixed the spelling of 'return' keyword to fix the error"
+          "6": "Added 'std::' before 'endl' to specify the namespace.",
+          "7": "Corrected the spelling of 'return'."
       }
   }
 }
