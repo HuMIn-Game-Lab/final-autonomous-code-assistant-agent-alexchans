@@ -95,6 +95,7 @@ void CustomLLMJob::JobCompleteCallback()
             dMap[filePath][row].push_back(correctContents);
         }
     }
+    // use dMap to gothrough all files with errors and fixed the errors
     for (auto pair : dMap)
     {
         std::ifstream errorFile(pair.first);

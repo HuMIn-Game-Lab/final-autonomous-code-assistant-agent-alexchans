@@ -45,6 +45,9 @@ void CustomJob::JobCompleteCallback()
     // Return error output to the main thread and stores the output in error.json if the returnCode is not 0
     if (this->returnCode == 0)
     {
+        // Indicate that no errors exist in a file, file used inside agent.cpp to determine if all errors are cleared
+        std::ofstream file("Data/result.json");
+        file << "Valid";
         // shows the file does not have compile errors to the main user interface
         std::cout << "Compile Job " << this->GetUniqueID() << " Return Code: " << this->returnCode << std::endl;
         std::cout << "No Errors detected while compiling " << folder << " folder" << std::endl;
