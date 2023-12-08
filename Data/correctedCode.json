@@ -10,11 +10,11 @@
   },
   "comments": {
       "./Code/errorCode/TestCodes.cpp": {
-          "5": "Added semicolon at the end of the line to fix the error.",
+          "5": "Added semicolon at the end of the line.",
       },
       "./Code/errorCode/automated.cpp": {
-          "6": "Added 'std::' before 'endl' to specify namespace and fix the error.",
-          "7": "Corrected spelling of 'return' to fix the error."
+          "6": "Changed endl to std::endl.",
+          "7": "Fixed the spelling of 'return'."
       }
   }
 }

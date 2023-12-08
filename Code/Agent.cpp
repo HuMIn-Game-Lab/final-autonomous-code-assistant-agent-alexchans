@@ -101,4 +101,5 @@ void Agent::Run()
     std::cout << "Total jobs completed " << js->totalJobs << std::endl;
     js->Destroy();
     std::cout << "Job system is destroyed" << std::endl;
+    std::remove("Data/result.json"); // delete result.json after job system is done
 }
